@@ -22,3 +22,5 @@ let formValidation = function(form, els) {
 }
 
 let validate = new formValidation("#form", ["#name", "#email", "#password"])
+
+let validate1 = new formValidation("#form1", ["#name1", "#email1"])
