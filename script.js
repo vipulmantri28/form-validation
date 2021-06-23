@@ -47,7 +47,6 @@ const formValidate = (function(){
             event.preventDefault();
             requireCheck()
         })
-        console.log(inputDiv, inputs);
 
         function requireCheck() {
             const requiredDiv = inputDiv.filter(div => div.dataset.required === "true");
@@ -60,9 +59,19 @@ const formValidate = (function(){
                 }else if (input.value && div.innerHTML.includes(message)) {
                     div.removeChild(div.lastChild);
                 }
-            
             })
         }
+
+        const passwordDiv = form.querySelector('.password');
+        const passwordInput = passwordDiv.querySelector('input');
+        const strength = new RegExp(passwordInput.dataset.strength);
+        console.log(strength);
+
+        passwordInput.addEventListener("keypress", function(event) {
+            if (strength.test(event.target.value) === true) {
+                console.log(event.target.value);
+            }
+        })
     })
     console.log(forms);
 })()

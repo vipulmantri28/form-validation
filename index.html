@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Validation</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div>
-        <form id="form" action="/">
-            <div data-required="true" class="name">
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name">
-            </div>
-            <div data-required="true" class="email">
-                <label for="email">Email id:</label>
-                <input type="email" name="email" id="email">
-            </div>
-            <div data-required="true" class="password">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password">
-            </div>
-            <div class="submit">
-                <input type="submit">
-            </div>
-        </form>
+      <form id="form" action="/">
+        <div class="name">
+          <label for="name">
+            <span>Name:</span>
+            <input type="text" name="name" id="name"/>
+          </label>
+        </div>
+        <div class="email">
+          <label for="email">
+            <span>Email id:</span>
+            <input type="email" name="email" id="email" />
+          </label>
+        </div>
+        <div class="password">
+          <label for="password">
+            <span>Password:</span>
+            <input type="password" name="password" id="password" />
+          </label>
+        </div>
+        <div class="submit">
+          <input type="submit" />
+        </div>
+      </form>
     </div>
-    <div>
-        <form id="form1" action="/">
-            <div class="name1">
-                <label for="name">Name:</label>
-                <input type="text" name="name" id="name1">
-            </div>
-            <div data-required="true" class="email1">
-                <label for="email">Email id:</label>
-                <input type="email" name="email" id="email1">
-            </div>
-            <div data-required="true" class="password1">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password1">
-            </div>
-            <div class="submit1">
-                <input type="submit">
-            </div>
-        </form>
-    </div>
-    <script src="script.js"></script>
-</body>
+    <script src="script-oops.js"></script>
+    <script>
+      document.querySelector('#form').addEventListener("submit", function (event) {
+        event.preventDefault();
+        const form = new formValidation({
+            ele: "#form",
+            allRequired: true,
+            fields: {
+            name: {
+                onlyText: true,
+                charLimit: 20,
+                charError: "Field should not exceed 20 characters.",
+            },
+            // password: {
+            //     includesSpecialChar: true,
+            //     includesNum: true,
+            //     charLimit: 30,
+            //     charError: "Field should not exceed 30 characters.",
+            // },
+            },
+        });
+        if (!form.isValid) {
+            console.log('form data invalid');
+            return;
+        }
+      });
+    </script>
+  </body>
 </html>
