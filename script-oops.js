@@ -1,5 +1,5 @@
 function formValidation(para) {
-    const {ele, allRequired, fields} = para;
+    const {ele, allRequired, fields} = para || {};
     this.element = ele;
     this.allRequired = allRequired || false;
     this.fields = fields;
@@ -14,8 +14,6 @@ function formValidation(para) {
 
         this.validate(inputEle, field);
     })
-
-    return this.isValid;
 
 }
 
@@ -40,7 +38,7 @@ formValidation.prototype = {
             if (field.errorMsg === undefined) {
                 field.errorMsg = `<span class"error">${ele.name} is required.`
             }
-            new showError(field.errorMsg, parent)
+            this.showError(field.errorMsg, parent)
         }else {
             if (keys.includes('onlyText')) {
                 if (!/^[a-z ]+$/i.test(ele.value)) {
@@ -48,7 +46,7 @@ formValidation.prototype = {
                         field.onlyTextError = `The field should only contain letters.`
                     }
 
-                    new showError(field.onlyTextError, parent);
+                    this.showError(field.onlyTextError, parent);
                 }
             }
             if (keys.includes('charLimit')) {
@@ -58,20 +56,18 @@ formValidation.prototype = {
                         field.charError = `The field has character limit of ${field.charLimit}.`
                     }
         
-                    new showError(field.charError, parent);
+                    this.showError(field.charError, parent);
                 }
 
             }
         }
-    }
-}
-
-const showError = function(errMsg, parent) {
-    // formValidation.call(this, this.isValid, this.ele)
-    this.isValid = false;
-    if (parent.lastChild.className === 'error') {
-        parent.lastChild.innerHTML = errMsg;
-    }else {
-        parent.innerHTML += `<span class="error">${errMsg}</span>`;
+    },
+    showError: function(errMsg, parent) {
+        this.isValid = false;
+        if (parent.lastChild.className === 'error') {
+            parent.lastChild.innerHTML = errMsg;
+        }else {
+            parent.innerHTML += `<span class="error">${errMsg}</span>`;
+        }
     }
 }

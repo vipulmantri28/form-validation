@@ -41,19 +41,19 @@
             ele: "#form",
             allRequired: true,
             fields: {
-            name: {
-                onlyText: true,
-                charLimit: 20,
-                charError: "Field should not exceed 20 characters.",
+                name: {
+                    onlyText: true,
+                    charLimit: 20,
+                    charError: "Field should not exceed 20 characters."
+                },
+                password: {
+                    includesSpecialChar: true,
+                    includesNum: true,
+                    charLimit: 30,
+                    charError: "Field should not exceed 30 characters."
+                }
             },
-            // password: {
-            //     includesSpecialChar: true,
-            //     includesNum: true,
-            //     charLimit: 30,
-            //     charError: "Field should not exceed 30 characters.",
-            // },
-            },
-        });
+        })
         if (!form.isValid) {
             console.log('form data invalid');
             return;
