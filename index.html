@@ -37,14 +37,14 @@
     <script>
       document.querySelector('#form').addEventListener("submit", function (event) {
         event.preventDefault();
-        const form = new formValidation({
+        const form = new FormValidation({
             ele: "#form",
             allRequired: true,
             fields: {
                 name: {
                     onlyText: true,
                     charLimit: 20,
-                    charError: "Field should not exceed 20 characters."
+                    charError: "Field should not exceed 20 characters.",
                 },
                 password: {
                     includesSpecialChar: true,
