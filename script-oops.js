@@ -98,10 +98,16 @@ function InputValidation(ele, fields) {
         charError: `Password must be long.`
     }
     this.inputCheck(ele);
+
+    console.log(this.element.name)
+    
 }
 
 
 InputValidation.prototype = {
+    conditionnUpdate: function() {
+        Object.assign()
+    },
     inputCheck: function(ele) {
         switch (ele.type) {
             case 'text': {
@@ -119,9 +125,9 @@ InputValidation.prototype = {
 
 
 function textValidation() {
-    console.log('bhasad')
+    console.log('textValidation')
 }
 
 function passwordValidation() {
-    console.log('chutiyaap')
+    console.log('passwordValidation')
 }
